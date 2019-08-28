@@ -6,6 +6,7 @@
       axis: 'y',
       scroll: 'true',
       url: '/sortable/reorder',
+      headers: {},
       successCallback: null,
       errorCallback: null
     }, options);
@@ -17,8 +18,8 @@
 
       $.ajax({
         type: 'POST',
+        headers: setting.headers,
         url: setting.url,
-        dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify(makePostData($(this))),
         success: setting.successCallback,
