@@ -5,6 +5,10 @@
     var setting = $.extend({
       axis: 'y',
       scroll: 'true',
+      url: '/sortable/reorder',
+      headers: {},
+      successCallback: null,
+      errorCallback: null
     }, options);
 
     setting.update = function(event, ui) {
@@ -14,10 +18,12 @@
 
       $.ajax({
         type: 'POST',
-        url: '/sortable/reorder',
-        dataType: 'json',
+        headers: setting.headers,
+        url: setting.url,
         contentType: 'application/json',
         data: JSON.stringify(makePostData($(this))),
+        success: setting.successCallback,
+        error: setting.errorCallback
       });
     }
 
